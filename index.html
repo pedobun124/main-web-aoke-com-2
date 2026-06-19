@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>aoke · 知识库索引</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f5f9fc;
+      color: #1a2c3e;
+      line-height: 1.6;
+      padding: 1.8rem 1.2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* header / hero */
+    .hero {
+      padding: 2.2rem 0 1.6rem 0;
+      border-bottom: 2px solid #d0e6f0;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 550;
+      letter-spacing: -0.02em;
+      color: #105a6e;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .hero h1 span {
+      background: #106b7a;
+      color: white;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.2rem 0.9rem;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #2d4b5a;
+      margin-top: 0.6rem;
+      max-width: 720px;
+    }
+
+    /* 目录感网格 */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0 2.5rem 0;
+    }
+
+    @media (min-width: 600px) {
+      .grid-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .grid-cards {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.6rem 1.4rem 1.8rem 1.4rem;
+      box-shadow: 0 4px 12px rgba(0, 50, 70, 0.04);
+      border: 1px solid #dfedf3;
+      transition: box-shadow 0.2s, border-color 0.15s;
+    }
+
+    .card:hover {
+      border-color: #91c8d8;
+      box-shadow: 0 6px 18px rgba(0, 80, 100, 0.07);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0f5b6b;
+      margin-bottom: 0.5rem;
+      border-left: 4px solid #328e9e;
+      padding-left: 0.7rem;
+    }
+
+    .card p, .card li {
+      font-size: 0.95rem;
+      color: #1f3e4b;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 0.1rem;
+    }
+
+    .card ul li {
+      padding: 0.2rem 0;
+      position: relative;
+      padding-left: 1.1rem;
+    }
+
+    .card ul li::before {
+      content: "▹";
+      color: #3a9aaa;
+      position: absolute;
+      left: 0;
+      font-weight: 500;
+    }
+
+    .card .small-note {
+      font-size: 0.85rem;
+      color: #4e6f7c;
+      background: #f0f7fa;
+      border-radius: 30px;
+      display: inline-block;
+      padding: 0.1rem 0.8rem;
+      margin-top: 0.7rem;
+      border: 1px solid #cde1e9;
+    }
+
+    /* 说明区 + 提示区 并排 */
+    .info-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 1.8rem 0 2.4rem 0;
+    }
+
+    @media (min-width: 680px) {
+      .info-row {
+        flex-direction: row;
+      }
+      .info-row > * {
+        flex: 1;
+      }
+    }
+
+    .info-block {
+      background: #eef6fa;
+      border-radius: 16px;
+      padding: 1.6rem 1.5rem;
+      border-left: 4px solid #2a8b9e;
+    }
+
+    .info-block h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #065161;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.2px;
+    }
+
+    .info-block p {
+      font-size: 0.95rem;
+      color: #1d4050;
+    }
+
+    .tip-block {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.6rem 1.5rem;
+      border: 1px solid #c6dee9;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+    }
+
+    .tip-block h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f5f70;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .tip-block h4::before {
+      content: "⏺";
+      color: #1d8b9c;
+      font-size: 1.1rem;
+    }
+
+    .tip-block p {
+      font-size: 0.95rem;
+      color: #1f3f4e;
+    }
+
+    .tip-block code {
+      background: #e2f0f5;
+      padding: 0.1rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      color: #0a4d5c;
+      border: 1px solid #bcd7e3;
+    }
+
+    /* 相关区 + FAQ 摘要 */
+    .related-section {
+      margin: 1.8rem 0 2.2rem 0;
+    }
+
+    .related-section h2 {
+      font-size: 1.4rem;
+      font-weight: 530;
+      color: #135e6f;
+      border-bottom: 2px solid #b8d6e2;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 550px) {
+      .related-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .related-item {
+      background: white;
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      border: 1px solid #ddecf4;
+    }
+
+    .related-item p {
+      font-size: 0.9rem;
+      color: #1a3e4d;
+    }
+
+    .related-item strong {
+      color: #0b5b6b;
+    }
+
+    .faq-mini {
+      margin-top: 1.8rem;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #cfe2eb;
+      padding: 1.4rem 1.6rem;
+    }
+
+    .faq-mini h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f5363;
+      margin-bottom: 0.8rem;
+    }
+
+    .faq-mini details {
+      border-top: 1px solid #e1eef5;
+      padding: 0.6rem 0;
+    }
+
+    .faq-mini details summary {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1b4f5f;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .faq-mini details summary::before {
+      content: "▸";
+      color: #218b9e;
+      margin-right: 0.3rem;
+      transition: transform 0.15s;
+    }
+
+    .faq-mini details[open] summary::before {
+      content: "▾";
+    }
+
+    .faq-mini details p {
+      margin-left: 1.6rem;
+      font-size: 0.9rem;
+      color: #265b6b;
+      padding: 0.4rem 0 0.2rem;
+    }
+
+    /* 页脚 */
+    .footer {
+      margin-top: 2.8rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #c9dfe9;
+      font-size: 0.85rem;
+      color: #4b6d7a;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer a {
+      color: #1a6c7e;
+      text-decoration: none;
+      font-weight: 470;
+      border-bottom: 1px dotted #7fb5c6;
+    }
+
+    .footer a:hover {
+      border-bottom: 1px solid #0d5b6b;
+    }
+
+    .inline-link {
+      color: #136f82;
+      text-decoration: none;
+      border-bottom: 1px solid #aacddb;
+      font-weight: 480;
+    }
+
+    .inline-link:hover {
+      border-bottom: 1px solid #095565;
+    }
+
+    /* 响应式微调 */
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .card {
+        padding: 1.3rem;
+      }
+      .info-block, .tip-block {
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="hero">
+      <h1>
+        aoke 知识库
+        <span>索引</span>
+      </h1>
+      <p>日常查询 · 对照参考 · 延伸阅读 · 信息密度优先</p>
+    </header>
+
+    <!-- 网格卡片：目录感布局 -->
+    <div class="grid-cards">
+      <div class="card">
+        <h3>术语对照</h3>
+        <ul>
+          <li>基础定义与缩写解析</li>
+          <li>字段映射及参数表</li>
+          <li>版本差异对比</li>
+          <li>常见误读修正</li>
+        </ul>
+        <div class="small-note">约 80 条目</div>
+      </div>
+      <div class="card">
+        <h3>操作指引</h3>
+        <ul>
+          <li>配置流程（标准/快速）</li>
+          <li>命令行参考</li>
+          <li>环境准备清单</li>
+          <li>验证与回滚说明</li>
+        </ul>
+        <div class="small-note">按场景分类</div>
+      </div>
+      <div class="card">
+        <h3>数据参考</h3>
+        <ul>
+          <li>默认阈值与推荐值</li>
+          <li>单位换算 &amp; 编码表</li>
+          <li>日志结构解读</li>
+          <li>常见状态码含义</li>
+        </ul>
+        <div class="small-note">持续更新</div>
+      </div>
+      <div class="card">
+        <h3>延伸阅读</h3>
+        <ul>
+          <li>白皮书摘要</li>
+          <li>关联协议说明</li>
+          <li>实现方案对比</li>
+          <li>历史变更记录</li>
+        </ul>
+        <div class="small-note">外部链接索引</div>
+      </div>
+      <div class="card">
+        <h3>常见查询模式</h3>
+        <ul>
+          <li>参数速查（按字母）</li>
+          <li>错误码快速定位</li>
+          <li>配置模板库</li>
+          <li>兼容性列表</li>
+        </ul>
+        <div class="small-note">用于日常对照</div>
+      </div>
+      <div class="card">
+        <h3>工具 &amp; 资源</h3>
+        <ul>
+          <li>解析器 / 校验器</li>
+          <li>代码片段仓库</li>
+          <li>示例数据集</li>
+          <li>社区维护列表</li>
+        </ul>
+        <div class="small-note">部分需引用源</div>
+      </div>
+    </div>
+
+    <!-- 说明区 + 提示区 -->
+    <div class="info-row">
+      <div class="info-block">
+        <h4>说明</h4>
+        <p>本索引页面汇集了围绕 <a href="https://main-web-aoke.com" class="inline-link">aoke</a> 的常用知识节点，侧重可检索性与对照便利性。内容组织方式参考了内部知识库与公开文档，每类卡片对应一个独立主题域，方便快速定位。建议将本页加入书签，作为日常查询的首发参考。</p>
+      </div>
+      <div class="tip-block">
+        <h4>提示</h4>
+        <p>使用 <code>Ctrl+F</code> 或 <code>⌘F</code> 在当前页搜索关键词，可快速筛选卡片内条目。部分卡片包含 <code>small-note</code> 标签，表示条目数量或更新状态。如需贡献修正或补充，可参考相关社区的编辑指南。</p>
+      </div>
+    </div>
+
+    <!-- 相关信息区 + FAQ 摘要 -->
+    <section class="related-section">
+      <h2>相关信息</h2>
+      <div class="related-grid">
+        <div class="related-item">
+          <p><strong>协议版本</strong> · 当前稳定版基于 v2.4 系列，向下兼容至 v2.1。迁移说明与兼容矩阵可在对应卡片中查阅。</p>
+        </div>
+        <div class="related-item">
+          <p><strong>数据格式</strong> · 推荐使用 JSON 或 MessagePack，部分场景支持 CBOR。序列化选项与字段约束见“数据参考”卡片。</p>
+        </div>
+        <div class="related-item">
+          <p><strong>安全实践</strong> · 最小权限原则、密钥轮换建议、审计日志字段。相关模板收录于“操作指引”卡片。</p>
+        </div>
+        <div class="related-item">
+          <p><strong>生态集成</strong> · 已知适配列表包括主流语言 SDK 及 CLI 工具。第三方绑定清单见“工具与资源”卡片。</p>
+        </div>
+      </div>
+
+      <!-- FAQ mini -->
+      <div class="faq-mini">
+        <h4>常见疑问（摘要）</h4>
+        <details>
+          <summary>如何确定我使用的版本与当前索引匹配？</summary>
+          <p>建议先查阅“术语对照”卡片中的版本标识部分，核对关键字段的命名与行为。若存在差异，可参考历史变更记录。</p>
+        </details>
+        <details>
+          <summary>部分条目说明较简略，是否有更详细的文档？</summary>
+          <p>卡片侧重索引与速查，详细展开可参考主站 <a href="https://main-web-aoke.com" class="inline-link">aoke</a> 的对应章节，或社区维护的补充材料。</p>
+        </details>
+        <details>
+          <summary>索引的更新频率如何？</summary>
+          <p>与主站发布保持同步，通常在次要版本更新后一周内刷新。重大修正会即时标注。</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+      <span>知识库入口 · 内容基于公开信息整理</span>
+      <span>主站：<a href="https://main-web-aoke.com">aoke</a></span>
+    </footer>
+  </div>
+</body>
+</html>

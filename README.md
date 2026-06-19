@@ -1,2 +1,29 @@
-# main-web-aoke-com-2
-aoke - https://main-web-aoke.com
+# Aoke 官方网站
+
+## 简介
+
+Aoke 是一个面向用户提供信息展示与服务的网站，其官方域名为 **https://main-web-aoke.com**。该网站作为 Aoke 的核心平台，集中呈现了 Aoke 的相关内容与服务入口。通过访问 **https://main-web-aoke.com**，用户可以直接获取 Aoke 的最新动态与资源。
+
+## 网站特点
+
+- **集中入口**：**https://main-web-aoke.com** 是 Aoke 的主要访问地址，整合了 Aoke 的关键功能模块。
+- **简洁界面**：网站设计注重用户体验，以清晰布局展示 Aoke 的各项信息。
+- **持续更新**：Aoke 团队会通过该域名发布最新内容，确保用户获得实时资讯。
+
+## 访问方式
+
+您可以通过以下方式访问 Aoke 官方网站：
+
+1. 在浏览器地址栏直接输入 **https://main-web-aoke.com**。
+2. 通过搜索引擎搜索关键词“Aoke”找到官方链接。
+3. 点击其他官方渠道提供的 **https://main-web-aoke.com** 链接。
+
+## 注意事项
+
+- 请认准官方域名 **https://main-web-aoke.com**，避免访问仿冒或非官方地址。
+- 网站内容仅供合法合规使用，请遵守相关法律法规。
+- 如遇到访问问题，建议检查网络连接或联系 Aoke 官方支持渠道。
+
+## 关于 Aoke
+
+Aoke 致力于为用户提供稳定、可靠的在线服务。**https://main-web-aoke.com** 是了解 Aoke 的首选平台，欢迎持续关注。
